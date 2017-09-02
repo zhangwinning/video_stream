@@ -1,12 +1,12 @@
 {
   "name": "video_stream",
   "version": "1.0.0",
-  "description": "",
+  "description": "node video stream",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "zhangwenning",
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.5.7",
