@@ -6,8 +6,8 @@
 
 
 参考资料
-[Node.js Streams: Everything you need to know](https://medium.freecodecamp.org/node-js-streams-everything-you-need-to-know-c9141306be93)
 
+[Node.js Streams: Everything you need to know](https://medium.freecodecamp.org/node-js-streams-everything-you-need-to-know-c9141306be93)
 [Video stream with Node.js and HTML5](https://medium.com/@daspinola/video-stream-with-node-js-and-html5-320b3191a6b6)
 
 [Basic use of Node.js streams](http://codewinds.com/blog/2013-08-02-streams-basics.html#for_additional_reading)
