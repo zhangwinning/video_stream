@@ -23,8 +23,6 @@ app.get('/movieA', (req, res) => {
 	const fileSize = stat.size;
 	const range = req.headers.range;
 
-	console.log('########', range);
-
 	const parts = range.replace(/bytes=/, "").split("-")
 	const start = parseInt(parts[0], 10);
 	const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
