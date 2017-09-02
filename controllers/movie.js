@@ -3,7 +3,7 @@ var router = express.Router();
 var fs = require('fs');
 
 router.get('/', function(req, res){
-	//这里读取movieA的视频
+	
 	var path = 'video/shanghaiTan.mp4';
 	var stat = fs.statSync(path);
 	var fileSize = stat.size;
