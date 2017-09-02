@@ -1,4 +1,4 @@
-	var fs = require('fs');
+var fs = require('fs');
 var express = require('express');
 var app = express();
 
@@ -11,37 +11,7 @@ app.set('view engine', 'ejs');
 
 app.use('/public', express.static(__dirname + '/public'));
 
-app.get('/', (req, res) => {
-	res.render('pages/index', {title: 'Hey', message: 'Hello there!'});
-});
-
-// about page 
-app.get('/movieA', (req, res) => {
-	//这里读取movieA的视频
-	const path = 'video/shanghaiTan.mp4';
-	const stat = fs.statSync(path);
-	const fileSize = stat.size;
-	const range = req.headers.range;
-
-	const parts = range.replace(/bytes=/, "").split("-")
-	const start = parseInt(parts[0], 10);
-	const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
-	console.log(start, end);
-	const chunksize = (end-start) + 1;
-	const file = fs.createReadStream(path, {start, end})
-	const head = {
-		'Content-Range': `bytes ${start}-${end}/${fileSize}`,
-		'Accept-Ranges': 'bytes',
-		'Content-Length': chunksize,
-		'Content-Type': 'video/mp4',
-	}
-	res.writeHead(206, head);
-	file.pipe(res);
-});
-
-app.get('/about', (req, res) => {
-	res.render('pages/about');
-});
+app.use(require('./controllers'));
 
 app.listen(port, function () {
 	console.log('listen to port:' + port);
