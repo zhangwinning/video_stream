@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 // about page 
 app.get('/movieA', function(req, res) {
 	//这里读取movieA的视频
-	const path = 'assets/shanghaiTan.mp4';
+	const path = 'video/shanghaiTan.mp4';
 	const stat = fs.statSync(path);
 	const fileSize = stat.size;
 	const range = req.headers.range;
