@@ -1,4 +1,4 @@
-var fs = require('fs');
+	var fs = require('fs');
 var express = require('express');
 var app = express();
 
@@ -42,7 +42,7 @@ app.get('/movieA', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-	res.render('pages/about', {});
+	res.render('pages/about');
 });
 
 app.listen(port, function () {
