@@ -16,37 +16,33 @@ app.get('/', (req, res) => {
 });
 
 // about page 
-app.get('/movieA', function(req, res) {
+app.get('/movieA', (req, res) => {
 	//这里读取movieA的视频
 	const path = 'video/shanghaiTan.mp4';
 	const stat = fs.statSync(path);
 	const fileSize = stat.size;
 	const range = req.headers.range;
+
 	console.log('########', range);
-	if (range) {
-		const parts = range.replace(/bytes=/, "").split("-")
-		const start = parseInt(parts[0], 10);
-		const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
-		console.log(start, end);
-		const chunksize = (end-start) + 1;
-		const file = fs.createReadStream(path, {start, end})
-		const head = {
-			'Content-Range': `bytes ${start}-${end}/${fileSize}`,
-			'Accept-Ranges': 'bytes',
-			'Content-Length': chunksize,
-			'Content-Type': 'video/mp4',
-		}
-		console.log('*****', head);
-		res.writeHead(206, head);
-		file.pipe(res);
-	} else {
-		const head = {
-			'Content-Length': fileSize,
-			'Content-Type': 'video/mp4',
-		}
-		res.writeHead(200, head)
-		fs.createReadStream(path).pipe(res)
+
+	const parts = range.replace(/bytes=/, "").split("-")
+	const start = parseInt(parts[0], 10);
+	const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+	console.log(start, end);
+	const chunksize = (end-start) + 1;
+	const file = fs.createReadStream(path, {start, end})
+	const head = {
+		'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+		'Accept-Ranges': 'bytes',
+		'Content-Length': chunksize,
+		'Content-Type': 'video/mp4',
 	}
+	res.writeHead(206, head);
+	file.pipe(res);
+});
+
+app.get('/about', (req, res) => {
+	res.render('pages/about', {});
 });
 
 app.listen(port, function () {
