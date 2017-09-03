@@ -3,7 +3,7 @@
 
 大家好，我是曲灵风，这段时间看node stream的东西，想通过stream做一玩意儿，最后搞了一个视频站的东西(手机排版没做好，电脑排版还可以)。
 
-![视频站截图.png](http://upload-images.jianshu.io/upload_images/5648502-50e86acfaa73f30d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![视频站截图.png](http://upload-images.jianshu.io/upload_images/5648502-e76c6e2c1683d437.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 [访问](http://106.15.231.221:9000/)
 [源码位置](https://github.com/WenNingZhang/video_stream)
