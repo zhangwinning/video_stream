@@ -75,7 +75,8 @@ module.exports = router;
 这里是stream主要应用的地方，通过使用stream，使得每次发送数据是一块一块的，而并非一下子把所有的数据发送的前端。
 
 bootstrap请求视频默认是Content-Range的方式，这是种部分请求的方式，针对范围请求，响应会返回状态码为 206 Partial Content 的响应报文，见下图所示。
-![Content-Range.png](http://upload-images.jianshu.io/upload_images/5648502-41b0d739e530b998.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Content-Range.png](http://upload-images.jianshu.io/upload_images/5648502-30b2b2109eb26202.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 因为rander的格式是`Range: bytes = 0 - `，因此通过字符串的处理可以获取相应信息，从而构建响应头。
 最后通过可读流的pipe方法写到可写流(response对象中)。
 
