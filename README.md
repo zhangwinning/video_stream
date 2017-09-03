@@ -16,7 +16,7 @@
 
 既然stream可以处理大量数据，那么处理视频这样的文件就可以使用stream。
 
-先看一下app.js
+先看app.js
 ```js
 var express = require('express');
 var app = express();
@@ -80,7 +80,7 @@ bootstrap请求视频默认是Content-Range的方式，这是种部分请求的�
 因为rander的格式是`Range: bytes = 0 - `，因此通过字符串的处理可以获取相应信息，从而构建响应头。
 最后通过可读流的pipe方法写到可写流(response对象中)。
 
-所有流都是事件（EventEmitter）的实例，因此可以监听事件。而pipe方法的实现原理是就是通过对`data`和`end`事件的监听获取数据的，其中pipe还利用了后压机制，是流的比较好的实现方式。
+所有流都是事件（EventEmitter）的实例，因此可以监听事件。而pipe方法的实现原理是就是通过对`data`和`end`事件的监听获取数据的，其中pipe还利用了后压机制，是流比较好的实现方式。
 
 其实为了做这个东西，着实是踩了不少坑，例如：
 1. 访问服务器端口访问不成功，在知乎上问[问题](https://www.zhihu.com/question/64657512)。
