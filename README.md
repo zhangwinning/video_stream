@@ -80,24 +80,17 @@ bootstrap请求视频默认是Content-Range的方式，这是种部分请求的�
 因为rander的格式是`Range: bytes = 0 - `，因此通过字符串的处理可以获取相应信息，从而构建响应头。
 最后通过可读流的pipe方法写到可写流(response对象中)。
 
-
-
-
+所有流都是事件（EventEmitter）的实例，因此可以监听事件。而pipe方法的实现原理是就是通过对`data`和`end`事件的监听获取数据的，其中pipe还利用了后压机制，是流的比较好的实现方式。
 
 其实为了做这个东西，着实是踩了不少坑，例如：
-1. 访问服务器访问不到，在知乎上问[问题](https://www.zhihu.com/question/64657512)。
-2. `'Content-Type': 'video/mp4'`，这里的设置只会播放mp4中编码是`H.264`，其他编码可能在google浏览器不显示。
+1. 访问服务器端口访问不成功，在知乎上问[问题](https://www.zhihu.com/question/64657512)。
+2. `'Content-Type': 'video/mp4'`，这里的设置只会播放mp4中编码是`H.264`，其他编码视频可能不显示。
 详细的[问题](http://blog.csdn.net/qq_16885135/article/details/54427532)，最后通过网上的一个Node依赖[实现](https://handbrake.fr/downloads.php)的。
-3. bootstrap由于第一次使用，也踩了不少坑😢。
-最后奖励自己一朵小红花🌹。
+3. bootstrap也是第一次使用，也踩了不少坑😢。
+希望各位看官不要再掉坑里了，最后奖励自己一朵小红花🌹。
 
 参考资料
 >  [Node.js Streams: Everything you need to know](https://medium.freecodecamp.org/node-js-streams-everything-you-need-to-know-c9141306be93)
 >  [Video stream with Node.js and HTML5](https://medium.com/@daspinola/video-stream-with-node-js-and-html5-320b3191a6b6)
 > [Basic use of Node.js streams](http://codewinds.com/blog/2013-08-02-streams-basics.html#for_additional_reading)
 > [Node.js Streams by Example](https://medium.com/@chris_neave/node-js-streams-by-example-9019398a258)
-
-
-
-
-
